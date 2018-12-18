@@ -1,0 +1,209 @@
+{% extends 'layout.twig' %}
+{% block head %}
+{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="row"  style="margin-top:10px"></div>
+    <div class="row">
+      <div class="hy-layout clearfix">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <div class="swiper-container hy-slide">
+            <div class="swiper-wrapper">
+                {% for u in hy %}
+                  <div class="swiper-slide" >
+                    <div class="hy-video-slide" >
+                      <a class="videopic" href="{{ u.ahref}}" style="padding-top: 60%; background: url('{{ u.imgsrc}}')  no-repeat; background-position:50% 50%; background-size: cover;">
+                        <span class="title" style="text-align: left;padding-left: 10px;padding-right: 10px;">{{ u.spab }}</span>
+                      </a>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next hidden-xs">
+              <i class="icon iconfont icon-right"></i>
+            </div>
+            <div class="swiper-button-prev hidden-xs">
+              <i class="icon iconfont icon-back"></i>
+            </div>
+            <div class="swiper-pagination">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12 padding-0">
+          <div class="hy-index-menu clearfix">
+            <div class="item">
+              <ul class="clearfix">
+                <li><a href="/list?type=dianying"><i class="icon iconfont icon-menu1 text-color"></i><span>电影</span></a></li>
+                <li><a href="/list?type=dianshi"><i class="icon iconfont icon-ic_mymatch_ranking text-color"></i><span>电视剧</span></a></li>
+                <li><a href="/list?type=dongman"><i class="icon iconfont icon-update text-color"></i><span>动漫</span></a></li>
+                <li><a href="/list?type=zongyi"><i class="icon iconfont icon-member1 text-color"></i><span>综艺</span></a></li>
+
+              </ul>
+            </div>
+          </div>
+          <div class="hy-index-tags hidden-md clearfix">
+            <div class="item">
+              <ul class="clearfix">
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=100">爱情</a></li>
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=106">动作</a></li>
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=102">恐怖</a></li>
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=104">科幻</a></li>
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=112">剧情</a></li>
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=105">犯罪</a></li>
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=113">奇幻</a></li>
+                <li><a href="/list?type=dianying&year=all&area=all&act=all&cat=108">战争</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="hy-right-qrcode hidden-sm hidden-xs">
+            <div class="item">
+              <dl class="clearfix">
+                <dt><img src="/images/qrcode.png"></dt>
+                <dd>
+                  <h4>扫描二维码“手机看大片”</h4>
+                  <p class="text-muted">
+                    也可以分享到朋友圈哦！
+                  </p>
+                  <p class="margin-0 text-muted">
+                    http://localhost:3000/
+                  </p>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--电影-->
+      <div class="container">
+        <div class="row"  style="margin-top:10px"></div>
+      </div>
+
+      <div class="hy-layout clearfix">
+        <div class="hy-video-head">
+          <ul class="pull-right">
+            <li class="active"><a href="/list?type=dianying" class="text-muted">更多 <i class="icon iconfont icon-right"></i></a></li>
+          </ul>
+          <h3 class="margin-0"><i class="icon iconfont icon-film text-color"></i>电影</h3>
+        </div>
+        <div class="clearfix">
+            {% for u in dianying %}
+              <div class="col-md-2 col-sm-3 col-xs-4">
+                <a class="videopic lazy imagessrc" href="{{ u.ahref }}" title="{{ u.spabTitle }}" data-original="{{ u.imgsrc }}" >
+                  <span class="play hidden-xs"></span>
+                  <span class="score">{{ u.score }}</span>
+                </a>
+                <div class="title">
+                  <h5 class="text-overflow"><a href="{{ u.ahref }}">{{ u.spabTitle }}</a></h5>
+                </div>
+                <div class="subtitle text-muted text-muted text-overflow hidden-xs">{{ u.star }}</div>
+              </div>
+            {% endfor %}
+          <div class="hy-video-footer visible-xs clearfix">
+            <a href="/list?type=dianying" class="text-muted">查看更多 <i class="icon iconfont icon-right pull-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!--电影-->
+      <!--电视剧-->
+      <div class="container">
+        <div class="row"  style="margin-top:10px"></div>
+      </div>
+      <div class="hy-layout clearfix">
+        <div class="hy-video-head">
+          <ul class="pull-right">
+            <li class="active"><a href="/list?type=dianshi" class="text-muted">更多 <i class="icon iconfont icon-right"></i></a></li>
+          </ul>
+          <h3 class="margin-0"><i class="icon iconfont icon-show text-color"></i>电视剧</h3>
+        </div>
+        <div class="clearfix">
+            {% for u in dianshi %}
+              <div class="col-md-2 col-sm-3 col-xs-4">
+                <a class="videopic lazy imagessrc" href="{{ u.ahref }}" title="{{ u.spabTitle }}" data-original="{{ u.imgsrc }}" >
+                  <span class="play hidden-xs"></span>
+                  <span class="score">{{ u.spanhint }}</span>
+                </a>
+                <div class="title">
+                  <h5 class="text-overflow"><a href="{{ u.ahref }}">{{ u.spabTitle }}</a></h5>
+                </div>
+                <div class="subtitle text-muted text-muted text-overflow hidden-xs">{{ u.star }}</div>
+              </div>
+            {% endfor %}
+            <div class="hy-video-footer visible-xs clearfix">
+              <a href="/list?type=dianshi" class="text-muted">查看更多 <i class="icon iconfont icon-right pull-right"></i></a>
+            </div>
+        </div>
+      </div>		<!--电视剧-->
+      <!--综艺-->
+      <div class="container">
+        <div class="row"  style="margin-top:10px"></div></div>
+      <div class="hy-layout clearfix">
+        <div class="hy-video-head">
+          <ul class="pull-right">
+            <li class="active"><a href="/list?type=zongyi" class="text-muted">更多 <i class="icon iconfont icon-right"></i></a></li>
+          </ul>
+          <h3 class="margin-0"><i class="icon iconfont icon-mallanimation text-color"></i>综艺</h3>
+        </div>
+        <div class="clearfix">
+            {% for u in zongyi %}
+              <div class="col-md-2 col-sm-3 col-xs-4">
+                <a class="videopic lazy imagessrc" href="{{ u.ahref }}" title="{{ u.spabTitle }}" data-original="{{ u.imgsrc }}" >
+                  <span class="play hidden-xs"></span>
+                  <span class="score">{{ u.spanhint }}</span>
+                </a>
+                <div class="title">
+                  <h5 class="text-overflow"><a href="{{ u.ahref }}">{{ u.spabTitle }}</a></h5>
+                </div>
+                <div class="subtitle text-muted text-muted text-overflow hidden-xs">{{ u.star }}</div>
+              </div>
+            {% endfor %}
+          <div class="hy-video-footer visible-xs clearfix">
+            <a href="/list?type=zongyi" class="text-muted">查看更多 <i class="icon iconfont icon-right pull-right"></i></a>
+          </div>
+        </div>
+      </div>		<!--综艺-->
+      <!--动漫-->
+      <div class="container">
+        <div class="row"  style="margin-top:10px"></div></div>
+      <div class="hy-layout clearfix">
+        <div class="hy-video-head">
+          <ul class="pull-right">
+            <li class="active"><a href="/list?type=dongman" class="text-muted">更多 <i class="icon iconfont icon-right"></i></a></li>
+          </ul>
+          <h3 class="margin-0"><i class="icon iconfont icon-icon_special text-color"></i>动漫</h3>
+        </div>
+        <div class="clearfix">
+            {% for u in dongman %}
+              <div class="col-md-2 col-sm-3 col-xs-4">
+                <a class="videopic lazy imagessrc" href="{{ u.ahref }}" title="{{ u.spabTitle }}" data-original="{{ u.imgsrc }}" >
+                  <span class="play hidden-xs"></span>
+                  <span class="score">{{ u.spanhint }}</span>
+                </a>
+                <div class="title">
+                  <h5 class="text-overflow"><a href="{{ u.ahref }}">{{ u.spabTitle }}</a></h5>
+                </div>
+                <div class="subtitle text-muted text-muted text-overflow hidden-xs">{{ u.star }}</div>
+              </div>
+            {% endfor %}
+          <div class="hy-video-footer visible-xs clearfix">
+            <a href="/list?type=dongman" class="text-muted">查看更多 <i class="icon iconfont icon-right pull-right"></i></a>
+          </div>
+        </div>
+      </div>		<!--动漫-->
+      <div class="container">
+        <div class="row"  style="margin-top:10px"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="/style/js/swiper.min.js"></script>
+  <script>
+      var swiper = new Swiper('.hy-slide', {
+          pagination: '.swiper-pagination',
+          paginationClickable: true,
+          autoplay: 3000,
+          nextButton: '.swiper-button-next',
+          prevButton: '.swiper-button-prev',
+      });
+  </script>
+{% endblock %}

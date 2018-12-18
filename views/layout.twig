@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="/style/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/style/css/swiper.min.css" rel="stylesheet" type="text/css" >
+    <link href="/style/font/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="/style/css/blackcolor.css" rel="stylesheet" type="text/css" />
+    <link href="/style/css/style.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+      body:before{
+        background: url('/style/bg.jpg') center 0 no-repeat; background-attachment: fixed;background-size: cover;
+        overflow: hidden;
+      }
+      @media (max-width: 767px){
+        body:before{
+          background: url('') center 0 no-repeat; background-attachment: fixed;background-size: cover;
+        }
+      }
+      .weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 99999;}
+      .weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
+    </style>
+      {% block head %}{% endblock %}
+  </head>
+  <body class="index">
+  <div class="weixin-tip">
+    <p>
+      <img src="/images/live_weixin.png" width=100% alt="微信打开"/>
+    </p>
+  </div>
+  <div class="hy-head-menu">
+    <div class="container">
+      <div class="row">
+        <div class="item">
+          <div class="logo hidden-xs">
+            <a class="hidden-sm hidden-xs" href="/">
+              <img src="/uploadfile/image/20171010/20171010060448_78472.png" />
+            </a>
+            <a class="visible-sm visible-xs" href="/">
+              <img src="/uploadfile/image/20171010/20171010060448_78472.png" />
+            </a>
+          </div>
+          <div class="search">
+            <form id="ff-search" role="search" action="/seacher" method="get">
+              <input class="form-control" placeholder="输入影片关键词..." type="text" id="ff-wd" name="wd" required="">
+              <input type="submit" class="hide">
+              <a href="javascript:" class="btns" title="搜索" onClick="$('#ff-search').submit();">
+                <i class="icon iconfont icon-search"></i>
+              </a>
+            </form>
+          </div>
+          <ul class="menulist hidden-xs">
+            <li><a href="/">首页</a></li>
+            <li ><a href="/list?type=dianying">电影</a></li>
+            <li ><a href="list?type=dianshi">电视剧</a></li>
+            <li ><a href="list?type=dongman">动漫</a></li>
+            <li ><a href="list?type=zongyi">综艺</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% block body %}{% endblock %}
+    <div class="hy-gototop hidden-sm hidden-xs">
+      <ul class="item clearfix">
+        <li class="codehover"><a href="javascript:void(0)" title="二维码"><i class="icon iconfont icon-code1"></i></a>
+          <div class="code clearfix">
+            <p class="margin-0">
+              <img class="pic-responsive" src="/images/qrcode.png" alt="扫描二维码">
+            </p>
+          </div></li>
+        <li><a data-toggle="tooltip" data-placement="top" class="" href="javascript:scroll(0,0)" title="返回顶部"><i class="icon iconfont icon-uparrow"></i></a></li>   </ul>
+    </div>
+    <div class="tabbar visible-xs">
+      <a href="/" class="item ">
+        <i class="icon iconfont icon-home"></i>
+        <p class="text">首页</p>
+      </a>
+      <a href="/list?type=dianying" class="item ">
+        <i class="icon iconfont icon-film"></i>
+        <p class="text">电影</p>
+      </a><a href="/list?type=dianshi" class="item ">
+        <i class="icon iconfont icon-show"></i>
+        <p class="text">电视剧</p>
+      </a><a href="/list?type=dongman" class="item ">
+        <i class="icon iconfont icon-mallanimation"></i>
+        <p class="text">动漫</p>
+      </a><a href="/list?type=zongyi" class="item ">
+        <i class="icon iconfont icon-flag"></i>
+        <p class="text">综艺</p>
+      </a>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="hy-footer clearfix">
+        </div>
+      </div>
+    </div>
+    <script src="/style/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/style/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="/style/js/LazyLoad.js"></script>
+    <script type='text/javascript' src="/style/js/swiper.min.js"></script>
+    <script type="text/javascript " src="/style/js/history.js "></script>
+  <!--[if lt IE 9]>
+  <script src="/style/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="/style/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+    <script type="text/javascript">
+        $(window).on("load",function(){
+            var winHeight = $(window).height();
+            function is_weixin() {
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            var isWeixin = is_weixin();
+            if(isWeixin){
+                $(".weixin-tip").css("height",winHeight);
+                $(".weixin-tip").show();
+            }
+        })
+        $(function() {
+            $(".videopic.lazy").lazyload({effect: "fadeIn"});
+            $("[data-toggle='tooltip']").tooltip();
+        });
+    </script>
+    {% block script %}{% endblock %}
+  </body>
+</html>

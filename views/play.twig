@@ -1,0 +1,306 @@
+{% extends 'layout.twig' %}
+{% block head %}
+    <style type="text/css">
+        #timer{background: rgba(0, 0, 0, 0.59);padding: 5px;text-align: center;width: 30px;position: absolute;top: 5%;right: 2%;color: #fff;font-size: 16px;border-radius: 50%;height: 30px;line-height: 20px}
+        #xiang{background: rgba(177, 13, 13, 0.87);padding: 5px;text-align: center;width: auto;position: absolute;bottom: 2%;right: 1%;color: #fff;font-size: 16px;border-radius: 10px;height: 20px;line-height: 9px}
+
+        #ys {
+            background: deepskyblue;
+            color: black;
+        }
+        .jkbtn{
+            background: deepskyblue;
+            color: black;
+        }
+        .item-desc-wrap .btn {
+            color: #1DB69A;
+            padding-left: 5px;
+            white-space: nowrap;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="hy-player clearfix">
+                <div class="item">
+                    <div class="col-md-9 col-sm-12 padding-0">
+                        <div class="info embed-responsive">
+                            <div id="shiping_box">
+
+                            </div>
+                        </div>
+                        <div class="footer clearfix">
+
+                            <ul class="cleafix hidden-sm hidden-xs">
+                                <li>
+                                    <a class="btn btn-sm btn-default" id="btn-pre">
+                                        <i class="icon iconfont icon-rewind1"></i> 上一集
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="btn btn-sm btn-default" id="btn-next">下一集
+                                        <i class="icon iconfont icon-fastforward"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <span class="text-muted" id="xuji">正在为您播放-{{ title }}--<span class="js">{{ hy[0].atext }}</span></span>
+
+                        </div>
+                        <div class="footer clearfix" id="xlu" style="display:inline-block; height:auto; background:none;">
+                            <span class="text-muted" id="xlus">
+                                <a onclick="xldata(this)" data-jk="http://api.bbbbbb.me/jx/?url=" class="btn btn-sm btn-default">1号线路</a>
+                                <a onclick="xldata(this)" data-jk="http://000o.cc/jx/ty.php?url=" class="btn btn-sm btn-default">2号线路</a>
+                                <a onclick="xldata(this)" data-jk="http://api.pucms.com/?url=" class="btn btn-sm btn-default">3号线路</a>
+                                <a onclick="xldata(this)" data-jk="http://jiexi.m6php.cn/?url=" class="btn btn-sm btn-default">4号线路</a>
+                                <a onclick="xldata(this)" data-jk="http://api.bbbbbb.me/yunjx/?url=" class="btn btn-sm btn-default">5号线路</a>
+
+
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 padding-0">
+
+                        <div class="sidebar">
+                            <div class="hy-play-list play">
+                                <div class="item tyui" id="dianshijua">
+                                    <div class="panel clearfix visible-sm visible-xs">
+                                        <div id="playlist1" class="playlist collapse in dianshijua">
+                                            <ul class="playlistlink-1 list-15256 clearfix">
+                                                <a id="btn-pre1" class="btn btn-sm btn-default" style='width:48%;float:left'>上一集</a>
+                                                <a id="btn-next1" class="btn btn-sm btn-default" style='width:48%;float:left'>下一集</a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <marquee direction="left"></marquee>
+                                    </div>
+                                    <div class="panel clearfix" id="menu">
+                                        <a class="option collapsed" data-toggle="collapse" data-parent="#playlist" href="#playlist">
+                                            <span>点击播放</span><span class="text-muted pull-right"><i class="icon iconfont icon-right"></i></span>
+                                        </a>
+                                        <div id="playlist" class="playlist collapse in dianshijua">
+                                            <ul class="playlistlink-1 list-15256 clearfix">
+                                                <div class="ji-tab-content js-tab-content" style="opacity:0;">
+                                                    <div class="num-tab js-tabs">
+                                                           {{ hy }}
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 hy-main-content" style="padding-right:0px">
+                <div class="hy-layout clearfix" style="margin-top: 0px">
+                    <div style="margin-top:0px"></div>
+                    <div class="hy-switch-tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#list3" data-toggle="tab">剧情介绍</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="hy-play-list tab-pane fade in active" id="list3">
+                            <div class="item">
+                                <div class="plot">
+                                    {{ jj }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/html" id="menuHtml">
+        <a class="option collapsed" data-toggle="collapse" data-parent="#playlist{{ '{{ ensite}}' }}" href="#playlist{{ '{{ ensite}}' }}" aria-expanded="false">
+            {{ '{{ sas }}<' }}span class="text-muted pull-right"><i class="icon iconfont icon-right"></i></span>
+        </a>
+        <div id="playlist{{ '{{ ensite}}' }}" class="playlist dianshijua collapse" aria-expanded="false" style="height: 1px;">
+            <ul class="playlistlink-1 list-15256 clearfix">
+                <div class="ji-tab-content js-tab-content" style="opacity:1;">
+                    <div class="num-tab js-tabs">
+                        {{ '{{ hy }}' }}
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </script>
+
+    <script type="text/javascript" src="/style/js/template-web.js"></script>
+    <script type="text/javascript">
+        template.defaults.escape=false;
+        var menu = [{{ menu }}]
+        var id= '{{ id }}'
+        var category= '{{ category }}'
+        function dsa (menu){
+            var data = {sas:menu.cnsite,ensite:menu.ensite }
+            console.log('/360ys/cover/switchsitev2?site='+menu.ensite+'&id='+id+'&category='+category)
+            $.get('/360ys/cover/switchsitev2?site='+menu.ensite+'&id='+id+'&category='+category,function(da){
+                let html = da.data
+                console.log(Number(category)==2)
+                if(Number(category)==2){
+                    let tvzz = html.match(/<div\sclass="num-tab-main\s*g-clear\s*js-tab"[\s\S]+?<\/div>/g)
+                    console.log(tvzz)
+                    if(!tvzz){
+                        tvzz = '<div class="num-tab-main g-clear ">'+html.match(/<a data-num="(.*?)" data-daochu="to=(.*?)" href="(.*?)">/g)[0]+'</div>';
+                    }else{
+                        tvzz = tvzz[0].replace('<a target="_self" class="all js-show-init" href="#" title="收起">收起</a>','')
+                    }
+                    data.hy = tvzz
+                }else if(Number(category)==3){
+                    data.hy =  da.data
+                    var htmd = $(template('menuHtml',data))
+                } else if(Number(category)==4) {
+                    var da = $(da.data);
+                    let cs = da.find('.js-series-all');
+                    if(cs.length==0){
+                        cs = da.find('.m-series-number-container');
+                    }
+                    cs.css('display','block');
+                    cs.find('.js-slice-series-slide').remove();
+                    cs.find('.series-slice-view').css('display','block')
+                    data.hy =  cs.html();
+                }
+                var htmd = $(template('menuHtml',data))
+                $.each(htmd.find('a[data-daochu]'),function () {
+                    var url = $(this).attr('href');
+                    $(this).addClass('am-btn am-btn-default lipbtn')
+                    $(this).attr('data-href',url);
+                    $(this).attr('href','javascript:;');
+                    $(this).click(function(){
+                        var href = $(this).attr('data-href');
+                        var text = $(this).text();
+                        $('.js').text('-' + text+'');
+                        $('a[data-daochu]').removeAttr('id','')
+                        $(this).attr('id','ys');
+                        var jiekou = $('.jkbtn').attr('data-jk');
+                        if (href != '' || href != null) {
+                            $('#video').attr('src', '/jzad');
+                            setTimeout(function () {
+                                $('#video').attr('src', jiekou + href);
+                            },0)
+                        }
+                    });
+                });
+                $("#menu").append(htmd)
+
+            })
+        }
+        if(menu.length>=1){
+            var me = menu[0];
+            var at = $("#menu").find('[data-parent="#playlist"]')
+            at.attr('href','#playlist'+me.ensite)
+            at.find('span:eq(0)').text(me.cnsite)
+            $("#playlist").attr('id','playlist'+me.ensite)
+            for(var i=1;i<menu.length;i++){
+                dsa(menu[i])
+            }
+        }
+        $(function () {
+            $.each($('.js-open'),function () {
+                $(this).attr('href','javascript:void (0);')
+            })
+            $.each($('.js-close'),function () {
+                $(this).attr('href','javascript:void (0);')
+            })
+
+            $('.js-open').click(function () {
+                $('.js-open-wrap').hide();
+                $('.js-close-wrap').show();
+            })
+
+            $('.js-close').click(function () {
+                $('.js-open-wrap').show();
+                $('.js-close-wrap').hide();
+
+            })
+            $.each($('.num-tab.js-tabs'),function () {
+                if($(this).children('.num-tab-main').length>1){
+                    $(this).children('.num-tab-main:eq(0)').remove();
+                }
+
+
+            });
+            $('a[data-daochu]').addClass('am-btn am-btn-default lipbtn');
+            $('.ji-tab-content.js-tab-content').css('opacity',1)
+            $.each($('a[data-daochu]'),function () {
+                var url = $(this).attr('href');
+                $(this).attr('data-href',url);
+                $(this).attr('href','javascript:;');
+                $(this).click(function(){
+                    var href = $(this).attr('data-href');
+                    var text = $(this).text();
+                    $('.js').text('-' + text+'');
+                    $('a[data-daochu]').removeAttr('id','')
+                    $(this).attr('id','ys');
+                    var jiekou = $('.jkbtn').attr('data-jk');
+                    if (href != '' || href != null) {
+                        $('#video').attr('src', '/jzad');
+                        setTimeout(function () {
+                            $('#video').attr('src', jiekou + href);
+                        },0)
+                    }
+                });
+            });
+
+            $('#xlus').children('a:eq(0)').addClass('jkbtn');
+            var autourl = $('[data-daochu]:eq(0)').attr('data-href');
+            $('a[data-daochu]:eq(0)').attr('id','ys');
+            var jiekou = $('#xlus').children('a:eq(0)').attr('data-jk');
+            $("#shiping_box").html('<iframe id="video" src="'+ jiekou + autourl+'"  allowfullscreen="true" allowtransparency="true" style="width:100%;border:none"></iframe>');
+            // 上一集
+            $("#btn-pre").click(function() {
+                $("#ys.btn-play-source").prev().click();
+            });
+
+            // 下一集
+            $("#btn-next").click(function() {
+                $("#ys.btn-play-source").next().click();
+            });
+            // 上一集
+            $("#btn-pre1").click(function() {
+                $("#ys.btn-play-source").prev().click();
+            });
+
+            // 下一集
+            $("#btn-next1").click(function() {
+                $("#ys.btn-play-source").next().click();
+            });
+            $(".js-month-tab").hide();
+            $("#js-year-all").show();
+            $(".js-month").each(function(i,v){
+                $(this).attr('href','javascript:void (0);')
+                $(this).click(function(){
+                    $(".js-month-tab").hide();
+                    $(".js-month-tab:eq("+i+")").show();
+                })
+            })
+        })
+    </script>
+    <script>
+
+        function xldata(obj) {
+            var url = $(obj).attr('data-jk');
+            $.each($('.jkbtn'), function () {
+                $(this).removeClass('jkbtn');
+            });
+            $(obj).addClass('jkbtn');
+            var src = $('#ys').attr('data-href');
+            $('#video').attr('src', url + src);
+        }
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'layout.twig' %}
+{% block head %}
+{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <div class="row"  style="margin-top:10px"></div>
+        <div class="row">
+            <div class="hy-layout clearfix">
+                <div class="hy-min-screen clearfix">
+                    <div class="item clearfix">
+                        {% for u in typeitem %}
+                        <dl class="clearfix">
+                            <dt class="text-muted">{{ u.title }}</dt>
+                            <dd class="clearfix">
+                                {{ u.content }}
+                            </dd>
+                        </dl>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row"  style="margin-top:0px"></div></div>
+            <div class="hy-layout clearfix" style="margin-top: 10px;">
+                <div class="hy-switch-tabs active clearfix">
+                    <span class="text-muted pull-right hidden-xs">如果您喜欢本站请动动小手分享给您的朋友！</span>
+                    <ul class="nav nav-tabs">
+                        {{ aul }}
+                    </ul>
+                </div>
+                <div class="hy-video-list">
+                    <div class="item">
+                        <ul class="clearfix">
+                            {% for u in hy %}
+                            <div class="col-md-2 col-sm-3 col-xs-4">
+                                <a class="videopic lazy" href="/play?play={{ u.url }}" title="{{ u.title }}" data-original="{{ u.image }}" style="background: url(./style/load.gif) no-repeat; background-position:50% 50%; background-size: cover;">
+                                    <span class="play hidden-xs"></span>
+                                </a>
+                                <div class="title">
+                                    <h5 class="text-overflow"><a href="/play?play={{ u.url }}">{{ u.title }}</a></h5>
+                                </div>
+                                <div class="subtitle text-muted text-muted text-overflow hidden-xs">{{ u.content }}</div>
+                            </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="hy-page clearfix">
+                    <ul class="cleafix">
+                        <div monitor-desc='分页' id='js-ew-page' data-block='js-ew-page'  class='ew-page'>
+                            {% for u in ah %}
+                            <li>
+                                {{ u }}
+                            </li>
+                            {% endfor %}
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="/style/js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.hy-slide', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplay: 3000,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+        });
+    </script>
+{% endblock %}
